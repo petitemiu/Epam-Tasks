@@ -162,3 +162,118 @@ class Solution{
         in.close();
     }
 }
+
+
+//Solution 8
+//https://www.hackerrank.com/challenges/java-datatypes/problem
+
+import java.util.*;
+import java.io.*;
+
+
+class Solution{
+    public static void main(String []argh)
+    {
+        Scanner sc = new Scanner(System.in);
+        int t=sc.nextInt();
+
+        for(int i=0;i<t;i++)
+        {
+
+            try
+            {
+                long x=sc.nextLong();
+                System.out.println(x+" can be fitted in:");
+                if(x>=-128 && x<=127)System.out.println("* byte");
+                if(x>=-32768 && x<=32767)System.out.println("* short");
+                if(x>=-Math.pow(2, 31) && x<=(Math.pow(2, 31) - 1))System.out.println("* int");
+                if(x>=-Math.pow(2, 63) && x<=(Math.pow(2, 63) - 1))System.out.println("* long");
+            }
+            catch(Exception e)
+            {
+                System.out.println(sc.next()+" can't be fitted anywhere.");
+            }
+
+        }
+    }
+}
+
+
+//Solution 9
+//https://www.hackerrank.com/challenges/java-end-of-file/problem
+
+import java.io.*;
+import java.util.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        int n = 0;
+        Scanner sc = new Scanner(System.in);
+        
+        while (sc.hasNext()){
+            System.out.println(++n + " " + sc.nextLine());
+        }
+    }
+}
+
+
+//Solution 10
+//https://www.hackerrank.com/challenges/java-static-initializer-block/problem
+
+static int B, H;
+static boolean flag = true;
+
+static {
+    Scanner sc = new Scanner(System.in);
+    B = sc.nextInt();
+    H = sc.nextInt();
+    if (B <= 0 || H <= 0){
+        flag = false;
+        System.out.println("java.lang.Exception: Breadth and height must be positive");
+    }
+}
+
+
+//Solution 11
+//https://www.hackerrank.com/challenges/java-int-to-string/problem
+
+   String s = n + "";
+   
+   
+//Solution 12
+//https://www.hackerrank.com/challenges/java-date-and-time/problem
+
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.Date;
+
+public class Solution {
+    public static String getDay(String day, String month, String year) {
+        
+        GregorianCalendar calendar = new GregorianCalendar(Integer.parseInt(year), Integer.parseInt(month) - 1, Integer.parseInt(day));
+        int weekday = calendar.get(Calendar.DAY_OF_WEEK);
+        switch(weekday){
+            case Calendar.MONDAY:
+                return "MONDAY";
+            case Calendar.TUESDAY:
+                return "TUESDAY";
+            case Calendar.WEDNESDAY:
+                return "WEDNESDAY";
+            case Calendar.THURSDAY:
+                return "THURSDAY";
+            case Calendar.FRIDAY:
+                return "FRIDAY";
+            case Calendar.SATURDAY:
+                return "SATURDAY";
+            case Calendar.SUNDAY:
+                return "SUNDAY";
+        }
+        return "";
+        
+    }
+	
+	
+//Solution 13
+//https://www.hackerrank.com/challenges/java-currency-formatter/problem
+
