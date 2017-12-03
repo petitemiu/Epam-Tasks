@@ -63,29 +63,30 @@ public int[] reverse3(int[] nums) {
 
 public int[] maxEnd3(int[] nums) {
   int last = 2, 
-      larger = nums[0] > nums[last] ? nums[0] : nums[last];
-      
-  for (int i = 0; i <= last; ++i){
-    nums[i] = larger;
-  }
+      larger = nums[0] > nums[last] ? 0 : last;
+  
+  nums[0] = nums[larger];    
+  nums[1] = nums[larger];
+  nums[2] = nums[larger];
   
   return nums;
 }
+
 
 
 //Solution 9
 //Given an array of ints, return the sum of the first 2 elements in the array. If the array length is less than 2, just sum up the elements that exist, returning 0 if the array is length 0.
 
 public int sum2(int[] nums) {
-  int len = nums.length < 2 ? nums.length : 2,
-      res = 0;
-  if (len == 0) return 0;
-  
-  for (int i = 0; i < len; ++i){
-    res += nums[i];
+  if (nums.length == 0) { 
+    return 0; 
   }
-  return res;
+  if (nums.length == 1) {
+    return nums[0];
+  }
+  return nums[0] + nums[1];
 }
+
 
 
 //Solution 10
@@ -238,4 +239,35 @@ public boolean unlucky1(int[] nums) {
         return true;
     }
   return false;
+}
+
+
+//Solution 26
+//Given 2 int arrays, a and b, return a new array length 2 containing, as much as will fit, the elements from a followed by the elements from b. The arrays may be any length, including 0, but there will be 2 or more elements available between the 2 arrays.
+
+public int[] make2(int[] a, int[] b) {
+  if (a.length == 0){
+    return new int[] {b[0], b[1]};
+  }
+  if (a.length == 1){
+    return new int[] {a[0], b[0]};
+  }
+  return new int[] {a[0], a[1]};
+}
+
+
+//Solution 27
+//Given 2 int arrays, a and b, of any length, return a new array with the first element of each array. If either array is length 0, ignore that array.
+
+public int[] front11(int[] a, int[] b) {
+  if (a.length == 0 && b.length == 0){
+    return new int[]{};
+  }
+  if (a.length == 0){
+    return new int[] {b[0]};
+  }
+  if (b.length == 0){
+    return new int[] {a[0]};
+  }
+  return new int[] {a[0], b[0]};
 }
