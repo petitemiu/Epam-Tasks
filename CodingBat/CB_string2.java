@@ -179,3 +179,67 @@ public String getSandwich(String str) {
 //Solution 16
 //Returns true if for every '*' (star) in the string, if there are chars both immediately before and after the star, they are the same.
 
+public boolean sameStarChar(String str) {
+  java.util.regex.Pattern p = java.util.regex.Pattern.compile("(.)\\*(?!(\\1|$))");
+  java.util.regex.Matcher m = p.matcher(str);
+  return !m.find();
+}
+
+
+//Solution 17
+//Given a string, compute a new string by moving the first char to come after the next two chars, so "abc" yields "bca". Repeat this process for each subsequent group of 3 chars, so "abcdef" yields "bcaefd". Ignore any group of fewer than 3 chars at the end.
+
+public String oneTwo(String str) {
+  StringBuilder ret = new StringBuilder(str.length());
+  java.util.regex.Pattern p = java.util.regex.Pattern.compile("(.)(..)");
+  java.util.regex.Matcher m = p.matcher(str);
+  while(m.find()){
+    ret.append(m.group(2)).append(m.group(1));
+  }
+  return ret.toString();
+}
+
+
+//Solution 18
+//Look for patterns like "zip" and "zap" in the string -- length-3, starting with 'z' and ending with 'p'. Return a string where for all such words, the middle letter is gone, so "zipXzap" yields "zpXzp".
+
+public String zipZap(String str) {
+  return str.replaceAll("z.p", "zp");
+}
+
+
+//Solution 19
+//Return a version of the given string, where for every star (*) in the string the star and the chars immediately to its left and right are gone. So "ab*cd" yields "ad" and "ab**cd" also yields "ad".
+
+public String starOut(String str) {
+  return str.replaceAll(".?\\*+.?", "");
+}
+
+
+//Solution 20
+//Given a string and a non-empty word string, return a version of the original String where all chars have been replaced by pluses ("+"), except for appearances of the word string which are preserved unchanged.
+
+public String plusOut(String str, String word) {
+  int strLen = str.length();
+  int wLen = word.length();
+  StringBuilder ret = new StringBuilder(strLen);
+  for (int i = 0; i < strLen; ++i){
+    if (i > strLen - wLen){
+      ret.append("+");
+      continue;
+    }
+    if (str.substring(i, i+wLen).equals(word)){
+      ret.append(word);
+      i+=wLen-1;
+    }
+    else{
+      ret.append('+');
+    }
+  }
+  return ret.toString();
+}
+
+
+//Solution 21
+//Given a string and a non-empty word string, return a string made of each char just before and just after every appearance of the word in the string. Ignore cases where there is no char before or after the word, and a char may be included twice if it is between two words.
+
