@@ -69,6 +69,9 @@ public boolean endOther(String a, String b) {
 //Solution 6
 //Return true if the given string contains an appearance of "xyz" where the xyz is not directly preceeded by a period (.). So "xxyz" counts but "x.xyz" does not.
 
+public boolean xyzThere(String str) {
+  return java.util.regex.Pattern.matches(".*(?<!\\.)xyz.*", str);
+}
 
 
 //Solution 7
@@ -243,3 +246,13 @@ public String plusOut(String str, String word) {
 //Solution 21
 //Given a string and a non-empty word string, return a string made of each char just before and just after every appearance of the word in the string. Ignore cases where there is no char before or after the word, and a char may be included twice if it is between two words.
 
+public String wordEnds(String str, String word) {
+  StringBuilder ret = new StringBuilder(str.length());
+  java.util.regex.Pattern p = java.util.regex.Pattern.compile("(?<=(.))?"+word+"(?=(.))?");
+  java.util.regex.Matcher m = p.matcher(str);
+  while(m.find()){
+    ret.append(m.group(1) == null? "" : m.group(1))
+       .append(m.group(2) == null? "" : m.group(2));
+  }
+  return ret.toString();
+}
