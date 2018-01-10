@@ -152,3 +152,36 @@ public int[] squareUp(int n) {
 //Solution 7
 //Given n>=0, create an array with the pattern {1,    1, 2,    1, 2, 3,   ... 1, 2, 3 .. n} (spaces added to show the grouping). Note that the length of the array will be 1 + 2 + 3 ... + n, which is known to sum to exactly n*(n + 1)/2.
 
+public int[] seriesUp(int n) {
+  int[] arr = new int[n*(n+1)/2];
+  int index = 0;
+  for (int i = 1; i <= n; ++i){
+    for (int j = 1; j <= i; ++j){
+        arr[index++] = j;
+    }
+  }
+  return arr;
+}
+
+
+//Solution 8
+//We'll say that a "mirror" section in an array is a group of contiguous elements such that somewhere in the array, the same group appears in reverse order. For example, the largest mirror section in {1, 2, 3, 8, 9, 3, 2, 1} is length 3 (the {1, 2, 3} part). Return the size of the largest mirror section found in the given array.
+
+public int countClumps(int[] nums) {
+  boolean inClump = false;
+  int clumps = 0;
+  for (int i = 0; i < nums.length-1; ++i){
+    if (nums[i] == nums[i+1]){
+      inClump = true;
+    }
+    else{
+      clumps += inClump ? 1 : 0;
+      inClump = false;
+    }
+  }
+  return inClump ? ++clumps : clumps;
+}
+
+
+//Solution 9
+//
