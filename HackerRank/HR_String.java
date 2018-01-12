@@ -190,3 +190,79 @@ public class Solution
 class MyRegex{
     String pattern = "^((([01]?[0-9]{1,2})|([0-2](([0-4][0-9])|([0-5]{2}))))\\.){3}(([01]?[0-9]{1,2})|([0-2](([0-4][0-9])|([0-5]{2}))))$";
 }
+
+//Solution 9
+//https://www.hackerrank.com/challenges/duplicate-word/problem
+
+import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class DuplicateWords {
+
+    public static void main(String[] args) {
+
+        String regex = "\\b(\\w+)(\\W+\\1\\b)+";
+        Pattern p = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
+
+        Scanner in = new Scanner(System.in);
+        int numSentences = Integer.parseInt(in.nextLine());
+        
+        while (numSentences-- > 0) {
+            String input = in.nextLine();
+            
+            Matcher m = p.matcher(input);
+            
+            // Check for subsequences of input that match the compiled pattern
+            while (m.find()) {
+                input = input.replaceAll(m.group(), m.group(1));
+            }
+            
+            // Prints the modified sentence.
+            System.out.println(input);
+        }
+        
+        in.close();
+    }
+}
+
+
+//Solution 10
+//https://www.hackerrank.com/challenges/valid-username-checker/problem
+
+
+class UsernameValidator {
+    public static final String regularExpression = "\\p{Alpha}\\w{7,29}";
+}
+
+//Solution 11
+//https://www.hackerrank.com/challenges/tag-content-extractor/problem
+
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution{
+   public static void main(String[] args){
+      
+      Scanner in = new Scanner(System.in);
+      int testCases = Integer.parseInt(in.nextLine());
+      String regex = "<(.+)>([^<]+)</\\1>";
+      Pattern p = Pattern.compile(regex);
+      while(testCases>0){
+         String line = in.nextLine();
+         Matcher m = p.matcher(line);
+         if(m.find()){
+             do{
+             System.out.println(m.group(2));
+             }while(m.find());
+         }
+         else{
+             System.out.println("None");
+         }
+         testCases--;
+      }
+   }
+}
