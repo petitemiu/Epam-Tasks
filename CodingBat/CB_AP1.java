@@ -319,4 +319,30 @@ public String[] mergeTwo(String[] a, String[] b, int n) {
 //Solution 21
 //Start with two arrays of strings, a and b, each in alphabetical order, possibly with duplicates. Return the count of the number of strings which appear in both arrays. The best "linear" solution makes a single pass over both arrays, taking advantage of the fact that they are in alphabetical order.
 
-
+public int commonTwo(String[] a, String[] b) {
+  int iterA = 0;
+  int iterB = 0;
+  int count = 0;
+  String currDuplStr = "";
+  while(iterA < a.length && iterB < b.length){
+    if (a[iterA].compareTo(b[iterB]) < 0){
+      ++iterA;
+    }
+    else if (a[iterA].compareTo(b[iterB]) > 0){
+      ++iterB;
+    }
+    else{
+      if (currDuplStr.equals(a[iterA])){
+        ++iterA;
+      }
+      else if (currDuplStr.equals(b[iterB])){
+        ++iterB;
+      }
+      else{
+         currDuplStr = a[iterA];
+         ++count;
+      }
+    }
+  }
+  return count;
+}
