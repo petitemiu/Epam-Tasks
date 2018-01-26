@@ -282,3 +282,93 @@ public String stringClean(String str) {
 //Solution 23
 //Given a string, compute recursively the number of times lowercase "hi" appears in the string, however do not count "hi" that have an 'x' immedately before them.
 
+public int countHi2(String str) {
+  if (str.length() < 2){
+    return 0;
+  }
+  
+  int shift = str.length() > 2 && str.charAt(0) == 'x' && str.substring(1, 3).equals("hi") ? 3 : 1;
+  int add = str.substring(0, 2).equals("hi") ? 1 : 0;
+  return add + countHi2(str.substring(shift, str.length()));
+}
+
+
+//Solution 24
+//Given a string that contains a single pair of parenthesis, compute recursively a new string made of only of the parenthesis and their contents, so "xyz(abc)123" yields "(abc)".
+
+public String parenBit(String str) {
+  if (str.length() == 0){
+    return "";
+  }
+  if (str.charAt(0) == '('){
+    if (str.charAt(str.length()-1) == ')'){
+      return str;
+    }
+    else return parenBit(str.substring(0, str.length()-1));
+  }
+  return parenBit(str.substring(1));
+}
+
+
+//Solution 25
+//Given a string, return true if it is a nesting of zero or more pairs of parenthesis, like "(())" or "((()))". Suggestion: check the first and last chars, and then recur on what's inside them.
+
+public boolean nestParen(String str) {
+  if (str.length() == 0){
+    return true;
+  }
+  if (str.charAt(0) == '(' && str.charAt(str.length()-1) == ')'){
+    return true && nestParen(str.substring(1, str.length()-1));
+  }
+  return false;
+}
+
+
+//Solution 26
+//Given a string and a non-empty substring sub, compute recursively the number of times that sub appears in the string, without the sub strings overlapping.
+
+public int strCount(String str, String sub) {
+  if (str.length() < sub.length()){
+    return 0;
+  }
+  if (str.substring(0, sub.length()).equals(sub)){
+    return strCount(str.substring(sub.length()), sub) + 1;
+  }
+  return strCount(str.substring(1), sub);
+}
+
+
+//Solution 27
+//Given a string and a non-empty substring sub, compute recursively if at least n copies of sub appear in the string somewhere, possibly with overlapping. N will be non-negative.
+
+public boolean strCopies(String str, String sub, int n) {
+  if (str.length() < sub.length()){
+    return false;
+  }
+  if (str.substring(0, sub.length()).equals(sub)){
+    n--;
+  }
+  if (n <= 0){
+    return true;
+  }
+  return strCopies(str.substring(1), sub, n);
+}
+
+
+//Solution 28
+//Given a string and a non-empty substring sub, compute recursively the largest substring which starts and ends with sub and return its length.
+
+public int strDist(String str, String sub) {
+  if (str.length() < sub.length()){
+    return 0;
+  }
+  if (str.substring(0, sub.length()).equals(sub)){
+    if (str.substring(str.length()-sub.length()).equals(sub)){
+      return str.length();
+    }
+    else{
+      return strDist(str.substring(0, str.length()-1), sub);
+    }
+  }
+  return strDist(str.substring(1), sub);
+}
